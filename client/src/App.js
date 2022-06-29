@@ -13,17 +13,17 @@ function App() {
     uri: 'http://localhost:4000/graphql', // link to graphql api
   });
 
-  console.log(users);
-
   const DisplayUsers = () => {
-    const {data, loading} = useQuery(users);
+    const {data, loading, error} = useQuery(users);
     if (data) console.log(data);
-
+    if (error) console.error(error);
     return (
       <div>
         <h1>Users</h1>
         {loading && <p>loading.....</p>}
-        <p>{data && data.users.map(user => <p>{user.name}</p>)}</p>
+        <p>
+          {data && data.users.map(user => <p key={user.id}>{user.name}</p>)}
+        </p>
       </div>
     );
   };
