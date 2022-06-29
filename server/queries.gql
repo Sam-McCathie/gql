@@ -1,0 +1,11 @@
+# Example queries
+
+# get all users
+{
+  users {
+    name
+    age
+    nationality
+    isCool
+  }
+}
