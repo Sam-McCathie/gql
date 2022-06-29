@@ -1,11 +1,87 @@
-# Example queries
-
-# get all users
-{
+# QEURIES
+# users = get all users
   users {
-    name
-    age
-    nationality
-    isCool
+      id
+      name
+      age
+      nationality
+      isCool
+      friends {
+        name
+      }
+      faveMovies {
+        title
+      }
+    }
+  
+# user = get user by id
+  user(id: $userId) {
+      id
+      name
+      age
+      nationality
+      isCool
+      friends {
+        name
+      }
+      faveMovies {
+        title
+      }
+    }
+# movies = get all movies
+  movies {
+    id
+    title
+    released
+  }
+
+# movie = get movie by title
+  movie(title: $title) {
+    id
+    title
+    released
   }
 }
+
+# MUTATIONS
+# createUser
+# input = createUser args -> NOTE these will usually be JSON
+  input: {
+    name: "Sam"
+    age: 26 
+    nationality: NEWZEALAND
+    isCool: false
+    friends: [2]
+    faveMovies: [1,2,3]
+  }
+
+# createUser args above are passed as input
+# NOTES - the name value is added as a return value 
+#       - all input fields could be added but are not required.
+  createUser(input: $input) {
+      name
+    }
+
+
+# updateName
+# input = createUser args
+  input: {
+    id: 1
+    newName: "Sammy"
+  }
+
+  updateName(input: $input) {
+        name
+      }
+
+
+# deleteUser
+# input = deleteUser arg
+  input: {
+    id: 1
+  }
+
+# name will return the name of the deleted user
+  deleteUser(input: $input) {
+        name
+      }
