@@ -51,8 +51,14 @@ export const typeDefs = gql`
     faveMovies: [Int]
   }
 
+  input UpdateName {
+    id: ID!
+    newName: String
+  }
+
   # Mutation = POST UPDATE DELETE requests
   type Mutation {
     createUser(input: CreateUserInput!): User!
+    updateName(input: UpdateName!): User!
   }
 `;

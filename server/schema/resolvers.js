@@ -46,5 +46,11 @@ export const resolvers = {
       userData.push(user);
       return user;
     },
+    updateName: (parent, args) => {
+      const {id, newName} = args.input;
+      const user = userData.find(user => user.id === Number(id));
+      user.name = newName;
+      return user;
+    },
   },
 };
