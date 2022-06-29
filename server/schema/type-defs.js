@@ -29,6 +29,7 @@ export const typeDefs = gql`
     AUSTRALIA
   }
 
+  # Query = GET request
   type Query {
     users: [User!]!
     user(id: ID!): User
@@ -39,4 +40,19 @@ export const typeDefs = gql`
   #   users: [User{= type}!{= every user can't be null}]{= must be an array}!{= cannot be null}
   #   user(id:{= argument name} ID{= argument type}!): User
   # }
+
+  # define createUser mutation args
+  input CreateUserInput {
+    name: String!
+    age: Int
+    nationality: Nationality
+    isCool: Boolean = false # default value if not value passed
+    friends: [Int]
+    faveMovies: [Int]
+  }
+
+  # Mutation = POST UPDATE DELETE requests
+  type Mutation {
+    createUser(input: CreateUserInput!): User!
+  }
 `;

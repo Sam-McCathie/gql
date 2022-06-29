@@ -28,15 +28,23 @@ export const resolvers = {
       const friends = userData.filter(friend =>
         parent.friends.includes(friend.id),
       );
-      console.log(friends);
       return friends;
     },
     faveMovies: (parent, args) => {
       const faveMovies = movieData.filter(movie =>
         parent.faveMovies.includes(movie.id),
       );
-      console.log(faveMovies);
       return faveMovies;
+    },
+  },
+  Mutation: {
+    createUser: (parent, args) => {
+      const user = args.input;
+      console.log(user);
+      const id = userData[userData.length - 1].id; // get last id of array
+      user.id = id + 1;
+      userData.push(user);
+      return user;
     },
   },
 };
