@@ -56,9 +56,14 @@ export const typeDefs = gql`
     newName: String
   }
 
+  input DeleteUser {
+    id: ID!
+  }
+
   # Mutation = POST UPDATE DELETE requests
   type Mutation {
     createUser(input: CreateUserInput!): User!
     updateName(input: UpdateName!): User!
+    deleteUser(input: DeleteUser): User
   }
 `;

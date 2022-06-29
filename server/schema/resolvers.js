@@ -1,4 +1,5 @@
 import {userData, movieData} from '../data.js';
+
 export const resolvers = {
   Query: {
     // queries listed match the types in type defs
@@ -51,6 +52,13 @@ export const resolvers = {
       const user = userData.find(user => user.id === Number(id));
       user.name = newName;
       return user;
+    },
+    deleteUser: (parent, args) => {
+      const id = args.input.id;
+      const index = userData.findIndex(user => user.id === Number(id));
+      const deletedUser = userData[index];
+      userData.splice(index, 1);
+      return deletedUser;
     },
   },
 };
