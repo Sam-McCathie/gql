@@ -4,8 +4,10 @@ import {
   InMemoryCache,
   ApolloProvider,
   useQuery,
+  useLazyQuery,
 } from '@apollo/client';
-import {users} from './gql/queries';
+import {getUser, getUsers} from './gql/queries';
+import {useState} from 'react';
 
 function App() {
   const client = new ApolloClient({
@@ -14,8 +16,7 @@ function App() {
   });
 
   const DisplayUsers = () => {
-    const {data, loading, error} = useQuery(users);
-    if (data) console.log(data);
+    const {data, loading, error} = useQuery(getUsers);
     if (error) console.error(error);
     return (
       <div>
@@ -28,11 +29,50 @@ function App() {
     );
   };
 
+  const LazyUsers = () => {
+    const [getLazyUsers, {data, loading, error}] = useLazyQuery(getUsers);
+    if (error) console.error(error);
+    return (
+      <div>
+        <h1>Lazy Users</h1>
+        <button onClick={() => getLazyUsers()}>Get Lazy Users</button>
+        {loading && <p>loading.....</p>}
+        <p>
+          {data && data.users.map(user => <p key={user.id}>{user.name}</p>)}
+        </p>
+      </div>
+    );
+  };
+
+  const GetUser = () => {
+    const [userID, setUserID] = useState(1);
+    const [getUserByID, {data, error}] = useLazyQuery(getUser, {
+      variables: {id: userID},
+    });
+
+    if (error) console.error(error);
+    if (data) console.log(data);
+
+    return (
+      <div>
+        <input
+          type={'number'}
+          value={userID}
+          onChange={e => setUserID(e.target.value)}
+        />
+        <button onClick={() => getUserByID()}>Get User</button>
+      </div>
+    );
+  };
+
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        <DisplayUsers />
+        {/* <DisplayUsers />
+        <hr /> */}
+        <LazyUsers />
         <hr />
+        <GetUser />
       </div>
     </ApolloProvider>
   );
