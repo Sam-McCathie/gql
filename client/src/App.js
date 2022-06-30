@@ -6,7 +6,7 @@ import {
   useQuery,
   useLazyQuery,
 } from '@apollo/client';
-import {getUser, getUsers} from './gql/queries';
+import {getUser, getUsers, getMovie} from './gql/queries';
 import {useState} from 'react';
 
 function App() {
@@ -55,12 +55,35 @@ function App() {
 
     return (
       <div>
+        <h1>Get User</h1>
         <input
           type={'number'}
           value={userID}
           onChange={e => setUserID(e.target.value)}
         />
         <button onClick={() => getUserByID()}>Get User</button>
+      </div>
+    );
+  };
+
+  const GetMovie = () => {
+    const [movie, setMovie] = useState('Movie 1');
+    const [Movie, {data, error}] = useLazyQuery(getMovie, {
+      variables: {title: movie},
+    });
+
+    if (error) console.error(error);
+    if (data) console.log(data);
+
+    return (
+      <div>
+        <h1>Get Movie</h1>
+        <input
+          type={'text'}
+          value={movie}
+          onChange={e => setMovie(e.target.value)}
+        />
+        <button onClick={() => Movie()}>Get User</button>
       </div>
     );
   };
@@ -73,6 +96,8 @@ function App() {
         <LazyUsers />
         <hr />
         <GetUser />
+        <hr />
+        <GetMovie />
       </div>
     </ApolloProvider>
   );

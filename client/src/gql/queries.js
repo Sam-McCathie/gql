@@ -17,3 +17,12 @@ export const getUser = gql`
     }
   }
 `;
+
+export const getMovie = gql`
+  {
+    movie(title: $title) {
+      id
+      title
+    }
+  }
+`;
