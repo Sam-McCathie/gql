@@ -5,6 +5,7 @@ import {
   ApolloProvider,
   useQuery,
   useLazyQuery,
+  gql,
 } from '@apollo/client';
 import {getUser, getUsers, getMovie} from './gql/queries';
 import {useState} from 'react';
@@ -91,8 +92,8 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="App">
-        {/* <DisplayUsers />
-        <hr /> */}
+        <DisplayUsers />
+        <hr />
         <LazyUsers />
         <hr />
         <GetUser />

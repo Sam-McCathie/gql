@@ -10,16 +10,16 @@ export const getUsers = gql`
 `;
 
 export const getUser = gql`
-  {
+  query User($id: ID!) {
     user(id: $id) {
-      id
-      title
+      name
+      isCool
     }
   }
 `;
 
 export const getMovie = gql`
-  {
+  query Movie($title: String) {
     movie(title: $title) {
       id
       title
