@@ -13,14 +13,20 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <div className="App">
-        <DisplayUsers />
-        <hr />
-        <LazyUsers />
-        <hr />
-        <GetUser />
-        <hr />
-        <GetMovie />
+      <div className="App" style={{display: 'flex', justifyContent: 'center'}}>
+        <div>
+          <h1>Queries</h1>
+          <DisplayUsers />
+          <hr />
+          <LazyUsers />
+          <hr />
+          <GetUser />
+          <hr />
+          <GetMovie />
+        </div>
+        <div style={{marginLeft: '50px'}}>
+          <h1>Mutations</h1>
+        </div>
       </div>
     </ApolloProvider>
   );
