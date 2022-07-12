@@ -21,7 +21,7 @@ function App() {
     if (error) console.error(error);
     return (
       <div>
-        <h1>Users</h1>
+        <h3>Users</h3>
         {loading && <p>loading.....</p>}
         <p>
           {data && data.users.map(user => <p key={user.id}>{user.name}</p>)}
@@ -35,7 +35,7 @@ function App() {
     if (error) console.error(error);
     return (
       <div>
-        <h1>Lazy Users</h1>
+        <h3>Lazy Users</h3>
         <button onClick={() => getLazyUsers()}>Get Lazy Users</button>
         {loading && <p>loading.....</p>}
         <p>
@@ -56,13 +56,14 @@ function App() {
 
     return (
       <div>
-        <h1>Get User</h1>
+        <h3>Get User</h3>
         <input
           type={'number'}
           value={userID}
           onChange={e => setUserID(e.target.value)}
         />
         <button onClick={() => getUserByID()}>Get User</button>
+        {data && <p>Data logged to console..</p>}
       </div>
     );
   };
@@ -78,13 +79,14 @@ function App() {
 
     return (
       <div>
-        <h1>Get Movie</h1>
+        <h3>Get Movie</h3>
         <input
           type={'text'}
           value={movie}
           onChange={e => setMovie(e.target.value)}
         />
         <button onClick={() => Movie()}>Get User</button>
+        {data && <p>Data logged to console..</p>}
       </div>
     );
   };
