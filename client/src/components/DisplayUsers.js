@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useQuery, gql} from '@apollo/client';
 
-const DisplayUsers = () => {
+const DisplayUsers = ({update, setUpdate}) => {
   const getUsers = gql`
     {
       users {
@@ -11,7 +11,15 @@ const DisplayUsers = () => {
     }
   `;
 
-  const {data, loading, error} = useQuery(getUsers);
+  const {data, loading, error, refetch} = useQuery(getUsers);
+
+  useEffect(() => {
+    if (update) {
+      refetch();
+      setUpdate(false);
+      console.log('ran');
+    }
+  }, [update, setUpdate, refetch]);
 
   if (error) console.error(error);
 

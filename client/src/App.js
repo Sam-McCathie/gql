@@ -5,6 +5,7 @@ import LazyUsers from './components/LazyUsers';
 import GetUser from './components/GetUser';
 import GetMovie from './components/GetMovie';
 import CreateUser from './components/CreateUser';
+import {useState} from 'react';
 
 function App() {
   const client = new ApolloClient({
@@ -12,12 +13,16 @@ function App() {
     uri: 'http://localhost:4000/graphql', // link to graphql api
   });
 
+  const [update, setUpdate] = useState(false); // hack to handle refetch
+
+  console.log(update);
+
   return (
     <ApolloProvider client={client}>
       <div className="App" style={{display: 'flex', justifyContent: 'center'}}>
         <div>
           <h1>Queries</h1>
-          <DisplayUsers />
+          <DisplayUsers update={update} setUpdate={setUpdate} />
           <hr />
           <LazyUsers />
           <hr />
@@ -27,7 +32,7 @@ function App() {
         </div>
         <div style={{marginLeft: '50px'}}>
           <h1>Mutations</h1>
-          <CreateUser />
+          <CreateUser setUpdate={setUpdate} />
         </div>
       </div>
     </ApolloProvider>

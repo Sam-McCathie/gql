@@ -58,9 +58,11 @@
 # createUser args above are passed as input
 # NOTES - the name value is added as a return value 
 #       - all input fields could be added but are not required.
+  mutation CreateUser($input: CreateUserInput!) {
   createUser(input: $input) {
-      name
-    }
+    name
+  }
+}
 
 
 # updateName
