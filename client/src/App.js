@@ -4,6 +4,7 @@ import DisplayUsers from './components/DisplayUsers';
 import LazyUsers from './components/LazyUsers';
 import GetUser from './components/GetUser';
 import GetMovie from './components/GetMovie';
+import CreateUser from './components/CreateUser';
 
 function App() {
   const client = new ApolloClient({
@@ -26,6 +27,7 @@ function App() {
         </div>
         <div style={{marginLeft: '50px'}}>
           <h1>Mutations</h1>
+          <CreateUser />
         </div>
       </div>
     </ApolloProvider>
