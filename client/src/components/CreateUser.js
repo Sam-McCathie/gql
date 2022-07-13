@@ -7,8 +7,6 @@ const CreateUser = ({setUpdate}) => {
     age: 0,
   });
 
-  console.log(user);
-
   const handleChange = e => {
     const {name, value} = e.target;
     setUser(prev => {

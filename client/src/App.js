@@ -6,6 +6,7 @@ import GetUser from './components/GetUser';
 import GetMovie from './components/GetMovie';
 import CreateUser from './components/CreateUser';
 import {useState} from 'react';
+import DeleteUser from './components/DeleteUser';
 
 function App() {
   const client = new ApolloClient({
@@ -33,6 +34,8 @@ function App() {
         <div style={{marginLeft: '50px'}}>
           <h1>Mutations</h1>
           <CreateUser setUpdate={setUpdate} />
+          <hr />
+          <DeleteUser setUpdate={setUpdate} />
         </div>
       </div>
     </ApolloProvider>
